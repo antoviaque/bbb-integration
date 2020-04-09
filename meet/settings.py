@@ -25,7 +25,7 @@ SECRET_KEY = '&h*++c%5=my__i(2dfuv%!3_r)+ojg=dw_xv!t+21u*e4h%$31'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', 'control.meet.opencraft.com']
 
 
 # Application definition
