@@ -1,1 +1,3 @@
-# bbb-integration
+# Meet
+
+Online meetings organization helper
