@@ -1,4 +1,7 @@
 from django.http import HttpResponse
+from django.views.decorators.csrf import csrf_exempt
 
+@csrf_exempt
 def calendly_webhook(request):
-    return HttpResponse("Hello, world. You're at the calendly webhook")
+    print(request.body)
+    return HttpResponse("OK")
