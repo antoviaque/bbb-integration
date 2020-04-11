@@ -5,11 +5,11 @@ Django settings for meet project.
 import os
 import environ
 
-env = environ.Env(
-    # set casting, default value
-    DEBUG=(bool, False)
-)
+from email.utils import getaddresses
+
+
 # reading .env file
+env = environ.Env()
 environ.Env.read_env(env_file=os.getcwd()+'/.env')
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -19,9 +19,21 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = env('DEBUG')
+DEBUG = env.bool('DEBUG', default=False)
 
 ALLOWED_HOSTS = ['localhost', 'control.meet.opencraft.com']
+
+# DJANGO_ADMINS=Full Name <email-with-name@example.com>,anotheremailwithoutname@example.com
+ADMINS = getaddresses([env('DJANGO_ADMINS')])
+
+# Emails
+EMAIL_HOST=env('EMAIL_HOST')
+EMAIL_PORT=env.int('EMAIL_PORT')
+EMAIL_HOST_USER=env('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD=env('EMAIL_HOST_PASSWORD')
+EMAIL_USE_TLS=env.bool('EMAIL_USE_TLS')
+EMAIL_SUBJECT_PREFIX = '[Meet] '
+SERVER_EMAIL=env('SERVER_EMAIL')
 
 # Big Blue Button admin configuration
 BBB_ROOT_URL = env('BBB_ROOT_URL') # Don't include the trailing '/'
