@@ -5,6 +5,9 @@ name = "pypi"
 
 [packages]
 django = "<3.1.0,>=3.0.5"
+mechanize = "*"
+bs4 = "*"
+django-environ = "*"
 
 [dev-packages]
 
