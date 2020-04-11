@@ -10,7 +10,6 @@ from bs4 import BeautifulSoup
 from pprint import pprint
 
 
-
 def bbb_login(br):
     def is_login_form(form):
         return "action" in form.attrs and 'login' in form.attrs['action']
@@ -63,6 +62,8 @@ def get_bbb_room_url(room_name):
 @csrf_exempt
 def calendly_webhook(request):
     event_dict = json.loads(request.body)
+    pprint(event_dict)
+
     event_start_time = event_dict['payload']['event']['start_time']
     event_end_time = event_dict['payload']['event']['end_time']
     event_uuid = event_dict['payload']['event']['uuid']
@@ -72,5 +73,5 @@ def calendly_webhook(request):
     event_name = '{} and {}'.format(event_invitee_name, event_host_name)
     room_name = '{} ({})'.format(event_invitee_name, event_invitee_email)
 
-    print(get_bbb_room_url(room_name))
+    print(room_name, get_bbb_room_url(room_name))
     return HttpResponse("OK")
